@@ -119,6 +119,10 @@ if HAVE_GALLIUM_ROCKCHIP
 SUBDIRS += drivers/rockchip winsys/rockchip/drm
 endif
 
+if HAVE_GALLIUM_HISILICON
+SUBDIRS += drivers/hisilicon winsys/hisilicon/drm
+endif
+
 ## the sw winsys'
 SUBDIRS += winsys/sw/null
 

@@ -166,6 +166,11 @@ static const struct drm_driver_descriptor driver_descriptors[] = {
         .create_screen = pipe_rockchip_create_screen,
         .configuration = pipe_default_configuration_query,
     },
+    {
+        .driver_name = "hisilicon",
+        .create_screen = pipe_hisilicon_create_screen,
+        .configuration = pipe_default_configuration_query,
+    },
 };
 #endif
 

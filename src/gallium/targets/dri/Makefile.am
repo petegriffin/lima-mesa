@@ -90,6 +90,7 @@ include $(top_srcdir)/src/gallium/drivers/sun4i/Automake.inc
 include $(top_srcdir)/src/gallium/drivers/exynos/Automake.inc
 include $(top_srcdir)/src/gallium/drivers/meson/Automake.inc
 include $(top_srcdir)/src/gallium/drivers/rockchip/Automake.inc
+include $(top_srcdir)/src/gallium/drivers/hisilicon/Automake.inc
 
 include $(top_srcdir)/src/gallium/drivers/softpipe/Automake.inc
 include $(top_srcdir)/src/gallium/drivers/llvmpipe/Automake.inc

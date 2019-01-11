@@ -1395,7 +1395,7 @@ GALLIUM_DRIVERS_DEFAULT="r300,r600,svga,swrast"
 AC_ARG_WITH([gallium-drivers],
     [AS_HELP_STRING([--with-gallium-drivers@<:@=DIRS...@:>@],
         [comma delimited Gallium drivers list, e.g.
-        "i915,nouveau,r300,r600,radeonsi,freedreno,pl111,svga,swrast,swr,tegra,v3d,vc4,virgl,etnaviv,imx,lima,sun4i,exynos,meson,rockchip"
+        "i915,nouveau,r300,r600,radeonsi,freedreno,pl111,svga,swrast,swr,tegra,v3d,vc4,virgl,etnaviv,imx,lima,sun4i,exynos,meson,rockchip,hisilicon"
         @<:@default=r300,r600,svga,swrast@:>@])],
     [with_gallium_drivers="$withval"],
     [with_gallium_drivers="$GALLIUM_DRIVERS_DEFAULT"])
@@ -2842,6 +2842,9 @@ if test -n "$with_gallium_drivers"; then
         xrockchip)
             HAVE_GALLIUM_ROCKCHIP=yes
             ;;
+        xhisilicon)
+            HAVE_GALLIUM_HISILICON=yes
+            ;;
         *)
             AC_MSG_ERROR([Unknown Gallium driver: $driver])
             ;;
@@ -2892,6 +2895,10 @@ fi
 
 if test "x$HAVE_GALLIUM_LIMA" != xyes -a "x$HAVE_GALLIUM_ROCKCHIP" = xyes  ; then
     AC_MSG_ERROR([Building with rockchip requires lima])
+fi
+
+if test "x$HAVE_GALLIUM_LIMA" != xyes -a "x$HAVE_GALLIUM_HISILICON" = xyes  ; then
+    AC_MSG_ERROR([Building with hisilicon requires lima])
 fi
 
 detect_old_buggy_llvm() {
@@ -3006,6 +3013,7 @@ AM_CONDITIONAL(HAVE_GALLIUM_SUN4I, test "x$HAVE_GALLIUM_SUN4I" = xyes)
 AM_CONDITIONAL(HAVE_GALLIUM_EXYNOS, test "x$HAVE_GALLIUM_EXYNOS" = xyes)
 AM_CONDITIONAL(HAVE_GALLIUM_MESON, test "x$HAVE_GALLIUM_MESON" = xyes)
 AM_CONDITIONAL(HAVE_GALLIUM_ROCKCHIP, test "x$HAVE_GALLIUM_ROCKCHIP" = xyes)
+AM_CONDITIONAL(HAVE_GALLIUM_HISILICON, test "x$HAVE_GALLIUM_HISILICON" = xyes)
 
 AM_CONDITIONAL(HAVE_GALLIUM_STATIC_TARGETS, test "x$enable_shared_pipe_drivers" = xno)
 
@@ -3154,6 +3162,7 @@ AC_CONFIG_FILES([Makefile
                  src/gallium/drivers/exynos/Makefile
                  src/gallium/drivers/meson/Makefile
                  src/gallium/drivers/rockchip/Makefile
+                 src/gallium/drivers/hisilicon/Makefile
                  src/gallium/state_trackers/clover/Makefile
                  src/gallium/state_trackers/dri/Makefile
                  src/gallium/state_trackers/glx/xlib/Makefile
@@ -3208,6 +3217,7 @@ AC_CONFIG_FILES([Makefile
                  src/gallium/winsys/exynos/drm/Makefile
                  src/gallium/winsys/meson/drm/Makefile
                  src/gallium/winsys/rockchip/drm/Makefile
+                 src/gallium/winsys/hisilicon/drm/Makefile
                  src/gbm/Makefile
                  src/gbm/main/gbm.pc
                  src/glx/Makefile

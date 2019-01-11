@@ -1,0 +1,3 @@
+C_SOURCES := \
+   hisilicon_drm_public.h \
+   hisilicon_drm_winsys.c
